@@ -1,10 +1,5 @@
 const initialState = {
-    loggedIn: false,
-    currentUser: null,
-    boards: [],
-    renderBoardDetail: false,
-    selectedImage: {},
-    editBoard: {},
+    ctaToggle: false,
     };
   
   

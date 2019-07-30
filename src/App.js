@@ -3,35 +3,44 @@ import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import OnboardingContainer from './OnboardingContainer/OnboardingContainer';
-import { justChecking } from './actions/actions';
+import {  } from './actions/actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      justChecking: clickAction => dispatch(justChecking()),
+      // justChecking: clickAction => dispatch(justChecking()),
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { 
-    // loggedIn: state.loggedIn, currentUser: state.currentUser 
+    // ctaToggle: state.ctaToggle,
   };
 };
 
-const ctaOnClick = (event) => {
-justChecking() 
-};
-
 function App() {
+
+  const [ctaModalStatus, setCTAModalStatus] = React.useState(false)
+
+  const ctaOnClick = (event) => {
+      setCTAModalStatus(!ctaModalStatus)
+  };
+
   return (
     <div className="App">
-      <p>
-        LOGO...with tagline?
-      </p>
-      <p>
-        paragraph about service
-      </p>
-      <button onClick={ ctaOnClick }>CTA HERE Leads to Onboarding using toggle</button>
+    {
+      !ctaModalStatus ?
+      <div>
+        <p>
+        Captain & Admiral (use Admiral logo here)
+        </p>
+        <p>
+          The easiest way to maintain cap tables for your startup. (say more stuff here maybe?)
+        </p>
+        <button onClick={ ctaOnClick }>GET STARTED</button>
+      </div>
+      :
       <OnboardingContainer />
+    }
     </div>
   );
 }
