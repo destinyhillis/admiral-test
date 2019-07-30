@@ -1,0 +1,1 @@
+export const JUST_CHECKING = "JUST_CHECKING";
