@@ -1,5 +1,5 @@
 const initialState = {
-    ctaToggle: false,
+      startDate: new Date()
     };
   
   

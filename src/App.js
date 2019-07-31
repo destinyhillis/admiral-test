@@ -13,22 +13,22 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return { 
-    // ctaToggle: state.ctaToggle,
+    // startDate: state.startDate,
   };
 };
 
 function App() {
 
-  const [ctaModalStatus, setCTAModalStatus] = React.useState(false)
+  const [ctaClickStatus, setCtaClickStatus] = React.useState(false)
 
   const ctaOnClick = (event) => {
-      setCTAModalStatus(!ctaModalStatus)
+      setCtaClickStatus(!ctaClickStatus);
   };
 
   return (
     <div className="App">
     {
-      !ctaModalStatus ?
+      !ctaClickStatus ?
       <div>
         <p>
         Captain & Admiral (use Admiral logo here)
@@ -39,7 +39,7 @@ function App() {
         <button onClick={ ctaOnClick }>GET STARTED</button>
       </div>
       :
-      <OnboardingContainer />
+      <OnboardingContainer ctaClickStatus={ ctaClickStatus } />
     }
     </div>
   );
