@@ -19,7 +19,7 @@ function OnboardingContainer() {
   // company name
   const [companyNameInput, setCompanyName] = useState({_id: null, name: ''})
   // date
-  const [selectedDate, handleDateChange] = useState(null);
+  const [selectedDate, setDateSelect] = useState(null);
 
   const onboardingSubmitOnClick = (event) => {
       setDashboardModalStatus(!dashboardModalStatus)
@@ -29,6 +29,9 @@ function OnboardingContainer() {
   const handleFormChange = (e) => {
     setCompanyName({
       companyNameInput : e.target.value
+    });
+    setDateSelect({
+      startDate : selectedDate
     })
   }
 
@@ -55,8 +58,8 @@ function OnboardingContainer() {
             <p className="input-title">*Company Name:
             <input type="text" name="name" onChange={ setCompanyName } /></p> 
 
-            <p className="input-title">Formation Date
-            <DatePicker /></p> 
+            <p className="input-title">Formation Date</p>
+            <DatePicker selected={ selectedDate } onChange={ setDateSelect } />
 
             <div>
               <p className="input-title">State</p> 
