@@ -1,1 +1,1 @@
-export const JUST_CHECKING = "JUST_CHECKING";
+export const ADD_NAME = "ADD_NAME";

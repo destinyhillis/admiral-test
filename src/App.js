@@ -31,10 +31,15 @@ function App() {
       !ctaClickStatus ?
       <div>
         <p>
-        Captain & Admiral (use Admiral logo here)
+        Captain by Admiral
         </p>
         <p>
-          The easiest way to maintain cap tables for your startup. (say more stuff here maybe?)
+          The easiest way to create and maintain your cap tables.
+        </p>
+        <p>
+          We are invested in the growth of your startup. Let us help you keep track of all of your shareholders,
+          from investors and founders to each employee. Our graphs and charts simplify your cap table and make 
+          it easier to view and update.
         </p>
         <button onClick={ ctaOnClick }>GET STARTED</button>
       </div>

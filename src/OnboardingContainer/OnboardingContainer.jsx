@@ -5,11 +5,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import DashboardContainer from '../DashboardContainer/DashboardContainer';
 import StateDropdown from './StateDropdown';
 import CountryDropdown from './CountryDropdown';
-// import {  } from '../actions/actions';
+import { companyNameStateChange } from '../actions/actions';
 
 const mapStateToProps = (state) => {
   return { 
     startDate: state.startDate,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return { 
+    companyNameStateChange: clickAction => dispatch(companyNameStateChange()),
   };
 };
 
@@ -21,8 +27,9 @@ function OnboardingContainer() {
   // date
   const [selectedDate, setDateSelect] = useState(null);
 
-  const onboardingSubmitOnClick = (event) => {
-      setDashboardModalStatus(!dashboardModalStatus)
+  const onboardingSubmitOnClick = (e) => {
+    setDashboardModalStatus(!dashboardModalStatus);
+    companyNameStateChange(companyNameInput);
   };
 
   const handleFormChange = (e) => {
@@ -45,13 +52,13 @@ function OnboardingContainer() {
         !dashboardModalStatus ?
         <div>
           <p>
-          Captain & Admiral (use Admiral logo here)
+          Captain by Admiral
           </p>
           <h1>Sign Up</h1>
           <p>
             Let us take the take the hard part out of creating cap tables for your business.
           </p>
-          <form >
+          <form onSubmit={ onboardingSubmitOnClick }>
             <p className="input-title">*Company Name:
             <input type="text" name="name" onChange={ setCompanyName } /></p> 
 
@@ -68,7 +75,7 @@ function OnboardingContainer() {
 
 
             <div>
-                <button onClick={ onboardingSubmitOnClick }>Create</button>
+                <button type="submit">Sign Up</button>
             </div>
           </form>
             <p className="input-title"><small>* required</small></p>
@@ -80,4 +87,4 @@ function OnboardingContainer() {
     );
   }
 
-  export default connect(mapStateToProps, null)(OnboardingContainer);
+  export default connect(mapStateToProps, mapDispatchToProps)(OnboardingContainer);

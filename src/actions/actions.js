@@ -1,7 +1,7 @@
-import {} from '../actionTypes/actionTypes';
+import { ADD_NAME } from '../actionTypes/actionTypes';
   
-  export function justChecking(){
+  export function companyNameStateChange(text){
       return function(dispatch){
-          return 'working'
+        return dispatch({ type: ADD_NAME, payload: text });
       }
   };
