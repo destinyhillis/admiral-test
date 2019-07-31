@@ -16,11 +16,23 @@ const mapStateToProps = (state) => {
 function OnboardingContainer() {
 
   const [dashboardModalStatus, setDashboardModalStatus] = useState(false);
+  // company name
+  const [companyNameInput, setCompanyName] = useState({_id: null, name: ''})
+  // date
   const [selectedDate, handleDateChange] = useState(null);
 
   const onboardingSubmitOnClick = (event) => {
       setDashboardModalStatus(!dashboardModalStatus)
   };
+
+  // company name
+  const handleFormChange = (e) => {
+    setCompanyName({
+      companyNameInput : e.target.value
+    })
+  }
+
+  // date
 
   // const selectDate = (dateSelected) => {
   //     handleDateChange(dateSelected)
@@ -35,21 +47,25 @@ function OnboardingContainer() {
           <p>
           Captain & Admiral (use Admiral logo here)
           </p>
+          <h1>Sign Up</h1>
           <p>
-            Onboarding form right here
+            Let us take the take the hard part out of creating cap tables for your business.
           </p>
           <form >
-            <p className="input-title">*Company Name:</p> 
-            <input type="text" name="name" />
+            <p className="input-title">*Company Name:
+            <input type="text" name="name" onChange={ setCompanyName } /></p> 
 
-            <p className="input-title">Formation Date</p> 
-            <DatePicker />
+            <p className="input-title">Formation Date
+            <DatePicker /></p> 
 
-            <p className="input-title">State</p> 
-            <StateDropdown />
+            <div>
+              <p className="input-title">State</p> 
+              <StateDropdown />
 
-            <p className="input-title">Country</p> 
-            <CountryDropdown />
+              <p className="input-title">Country</p> 
+              <CountryDropdown />
+            </div>
+
 
             <div>
                 <button onClick={ onboardingSubmitOnClick }>Create</button>
