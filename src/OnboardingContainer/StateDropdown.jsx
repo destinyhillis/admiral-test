@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 
-const mapStateToProps = (state) => {
-    return { 
-      startDate: state.startDate,
-    };
-  };
-
   function StateDropdown() {
 
     const [selectedState, setStateSelect] = useState(null);
@@ -18,7 +12,7 @@ const mapStateToProps = (state) => {
 
     return (
       <div>
-        <select onClick={ setStateSelect }>
+        <select onChange={ setStateSelect }>
             <option>Alabama</option>
             <option>Alaska</option>
             <option>Arizona</option>
