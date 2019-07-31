@@ -25,21 +25,18 @@ function OnboardingContainer() {
       setDashboardModalStatus(!dashboardModalStatus)
   };
 
-  // company name
   const handleFormChange = (e) => {
+    // company name
     setCompanyName({
       companyNameInput : e.target.value
     });
+    // date
     setDateSelect({
       startDate : selectedDate
-    })
+    });
+
   }
 
-  // date
-
-  // const selectDate = (dateSelected) => {
-  //     handleDateChange(dateSelected)
-  // };
 
 
     return (
