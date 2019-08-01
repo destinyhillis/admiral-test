@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import OnboardingContainer from './OnboardingContainer/OnboardingContainer';
 import {  } from './actions/actions';

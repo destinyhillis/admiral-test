@@ -36,24 +36,24 @@ router.post('/', async (req, res) => {
 });
 
 
-// // edit
-// router.put('/:id', async (req, res) => {
-//     let id = req.body.editBoardId;
-//     try{
-//         const updatedBoard = await Board.findByIdAndUpdate(id || req.body._id, req.body, {new: true})
-//         await updatedBoard.save();
-//         res.json({
-//             status: 200,
-//             data: updatedBoard
-//         })
-//     }catch(err){
-//         console.log(err);
-//         res.json({
-//             status: 500,
-//             data: err
-//         })    
-//     }
-// });
+// edit
+router.put('/:id', async (req, res) => {
+    console.log(req.params.id, 'req.params')
+    try{
+        const updatedCompany = await Company.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        await updatedCompany.save();
+        res.json({
+            status: 200,
+            data: updatedCompany
+        })
+    }catch(err){
+        console.log(err);
+        res.json({
+            status: 500,
+            data: err
+        })    
+    }
+});
 
 // // show
 // router.get('/:id', async (req, res) => {

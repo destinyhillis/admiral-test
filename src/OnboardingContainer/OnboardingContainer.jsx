@@ -10,6 +10,8 @@ import { companyNameStateChange } from '../actions/actions';
 const mapStateToProps = (state) => {
   return { 
     startDate: state.startDate,
+    company: state.company,
+    companyName: state.companyName,
   };
 };
 
@@ -23,27 +25,31 @@ function OnboardingContainer() {
 
   const [dashboardModalStatus, setDashboardModalStatus] = useState(false);
   // company name
-  const [companyNameInput, setCompanyName] = useState({_id: null, name: ''})
+  const [companyNameInput, setCompanyName] = useState(null)
   // date
   const [selectedDate, setDateSelect] = useState(null);
 
-  const onboardingSubmitOnClick = (e) => {
-    setDashboardModalStatus(!dashboardModalStatus);
-    companyNameStateChange(companyNameInput);
+
+  const handleNameInputChange = (e) => {
+    setCompanyName({
+      companyNameInput : e.target.value,
+    });
   };
 
-  const handleFormChange = (e) => {
-    // company name
-    setCompanyName({
-      companyNameInput : e.target.value
-    });
-    // date
+  const handleDateSelectionChange = (e) => {
+    console.log(e, 'e handleDateSelect');
     setDateSelect({
-      startDate : selectedDate
+      selectedDate : toLocaleString(e)
     });
+  };
 
-  }
-
+  const onboardingSubmitOnClick = (e) => {
+    e.preventDefault();
+    setDashboardModalStatus(!dashboardModalStatus);
+    companyNameStateChange(companyNameInput);
+    // getCompany();
+    
+  };
 
 
     return (
@@ -60,28 +66,25 @@ function OnboardingContainer() {
           </p>
           <form onSubmit={ onboardingSubmitOnClick }>
             <p className="input-title">*Company Name:
-            <input type="text" name="name" onChange={ setCompanyName } /></p> 
+            <input type="text" name="name" onChange={ handleNameInputChange } /></p> 
 
             <p className="input-title">Formation Date</p>
-            <DatePicker selected={ selectedDate } onChange={ setDateSelect } />
+            <DatePicker selected={ selectedDate } onChange={ handleDateSelectionChange } />
+            <p className="input-title">State</p> 
+            <StateDropdown />
 
-            <div>
-              <p className="input-title">State</p> 
-              <StateDropdown />
+            <p className="input-title">Country</p> 
+            <CountryDropdown />
 
-              <p className="input-title">Country</p> 
-              <CountryDropdown />
-            </div>
+            <button type="submit">Sign Up</button>
 
-
-            <div>
-                <button type="submit">Sign Up</button>
-            </div>
           </form>
             <p className="input-title"><small>* required</small></p>
         </div>
         :
-        <DashboardContainer />
+        <div>
+          <DashboardContainer />
+        </div>
       }
       </div>
     );
