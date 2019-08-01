@@ -55,45 +55,40 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// // show
-// router.get('/:id', async (req, res) => {
-//     try{
-//         const board = await Board.findById(req.params.id)
-//         res.json({
-//             status: 200,
-//             data: board
-//         })
-//     }catch(err){
-//         console.log(err);
-//         res.json({
-//             status: 500,
-//             data: err
-//         })    
-//     }
-// });
+// show
+router.get('/:id', async (req, res) => {
+    try{
+        const company = await Company.findById(req.params.id)
+        res.json({
+            status: 200,
+            data: company
+        })
+    }catch(err){
+        console.log(err);
+        res.json({
+            status: 500,
+            data: err
+        })    
+    }
+});
 
 
-// // delete
-// router.delete('/:id', async (req, res) => {
-//     try{
-//         const deletedBoard = await Board.findByIdAndDelete(req.params.id);
-//         const foundUser = await User.findOne({ boards: req.params.id });
-//         foundUser.boards.remove(req.params.id);
-//         await foundUser.save();
+// delete
+router.delete('/:id', async (req, res) => {
+    try{
+        const deletedCompany = await Company.findByIdAndDelete(req.params.id);
+        res.json({
+            status: 200,
+            data: deletedCompany
+        })
 
-
-//         res.json({
-//             status: 200,
-//             data: deletedBoard
-//         })
-
-//     }catch(err){
-//         console.log(err);
-//         res.json({
-//             status: 500,
-//             data: err
-//         })
-//     }
-// })
+    }catch(err){
+        console.log(err);
+        res.json({
+            status: 500,
+            data: err
+        })
+    }
+})
 
 module.exports = router;
