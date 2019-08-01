@@ -3,20 +3,29 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const path = require('path');
-require('dotenv').config()
+const cors = require('cors');
 
 require('./db/db');
 
 app.use(morgan('short'));
 app.use(bodyParser.json());
 
+const corsOptions = {
+    credentials: true,
+    optionsSuccessStatus: 200,
+  }
+
+app.use(cors(corsOptions));
+
+
 const shareholderController = require('./controllers/ShareholderController');
-app.use('/', shareholderController);
+const companyController = require('./controllers/CompanyController');
+app.use('/shareholders', shareholderController);
+app.use('/', companyController);
 
 
 
-
-const port = process.env.PORT || 9000;
+const port = 9000;
 app.listen(port, ()=>{
     console.log("back-end server working")
 })

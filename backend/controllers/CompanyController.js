@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const Shareholder = require('../controllers/ShareholderController');
+const Company = require('../models/Company');
 
 // index
 router.get('/', async (req, res) => {
     try{
-        const currentShareholders = await Shareholder.find();
+        const currentCompany = await Company.find();
             res.json({
                 status: 200,
-                data: currentShareholders
+                data: currentCompany
             })
 
     } catch(err){
@@ -17,49 +17,24 @@ router.get('/', async (req, res) => {
         })    }
 });
 
-// // index
-// router.get('/', async (req, res) => {
-//     console.log(req, 'req', res, 'res')
-//     try{
-//         const usersId = req.session.usersId;
-//         const currentUserBoards = await User.findById(usersId)
-//             .populate({ path: 'boards' });
-//         const boards = await Board.find({});
-//         res.json({
-//             status: 200,
-//             data: currentUserBoards
-//         })
+// new
+router.post('/', async (req, res) => {
+    try {
+        await Company.create(req.body);
+        res.json({
+            status: 200,
+            data: req.body,  
+        })
 
-//     } catch(err){
-//         res.json({
-//             status: 500,
-//             data: err
-//         })
-//     }
-// });
+    } catch(err){
+        console.log(err);
+        res.json({
+            status: 500,
+            data: err
+        })
+    }
+});
 
-// // new
-// router.post('/', async (req, res) => {
-//     try {
-//         const newBoard = await Board.create(req.body);
-//         const user = await User.findById(req.session.usersId)
-//         if(user){
-//             user.boards.push(newBoard)
-//         }
-//         await user.save()
-//         res.json({
-//             status: 200,
-//             data: newBoard,  
-//         })
-
-//     } catch(err){
-//         console.log(err);
-//         res.json({
-//             status: 500,
-//             data: err
-//         })
-//     }
-// });
 
 // // edit
 // router.put('/:id', async (req, res) => {
