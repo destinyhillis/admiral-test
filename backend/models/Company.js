@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const companySchema = new mongoose.Schema({
-    companyName: {type: String, required: true},
-    formationDate: {type: Date},
-    state: {type: String},
-    country: {type: String},
+    companyName: {type: String, required: true}
 })
 
 const Company = mongoose.model('Company', companySchema);

@@ -10,10 +10,19 @@ require('./db/db');
 app.use(morgan('short'));
 app.use(bodyParser.json());
 
+const whitelist = ["http://localhost:9000", "http://localhost:3000"];
+
 const corsOptions = {
-    credentials: true,
-    optionsSuccessStatus: 200,
-  }
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+}
 
 app.use(cors(corsOptions));
 
